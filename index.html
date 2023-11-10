@@ -1,0 +1,45 @@
+<DOCKTYPE!>
+<html>
+    <head>
+        <title>javascript Calculator</title>
+        <link rel="stylesheet" href="index.css">
+        <script src="index.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="button-container">
+                <input type="text" class="input" id="demo">
+                <div class="clearfix">
+                    <button class="float-left button adjust-btn" onclick="delFunction()">AC</button>
+                    <button class="float-left button adjust-btn">+/-</button>
+                    <button class="float-left button parsent-btn">%</button>
+                    <button class="float-left button colorful-btn division-btn" onclick="divFunction('/')">/</button>
+                </div>
+                <div class="clearfix">
+                    <button class="float-left button" onclick="numFunction(7)">7</button>
+                    <button class="float-left button" onclick="numFunction(8)">8</button>
+                    <button class="float-left button" onclick="numFunction(9)">9</button>
+                    <button class="float-left button colorful-btn mult-btn" onclick="multFunction('*')">*</button>
+                </div>
+                <div class="clearfix">
+                    <button class="float-left button" onclick="numFunction(4)">4</button>
+                    <button class="float-left button" onclick="numFunction(5)">5</button>
+                    <button class="float-left button" onclick="numFunction(6)">6</button>
+                    <button class="float-left button colorful-btn sub-btn" onclick="subFunction('-')">-</button>
+                </div>
+                <div class="clearfix">
+                    <button class="float-left button" onclick="numFunction(1)">1</button>
+                    <button class="float-left button" onclick="numFunction(2)">2</button>
+                    <button class="float-left button" onclick="numFunction(3)">3</button>
+                    <button class="float-left button colorful-btn add-btn" onclick="addFunction('+')">+</button>
+                </div>
+                <div class="clearfix">
+                    <button class="float-left button zero-btn" onclick="numFunction(0)">0</button>
+                    <button class="float-left button dot-btn" onclick="numFunction('.')">.</button>
+                    <button class="float-left button colorful-btn" onclick="calFunction()">=</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
