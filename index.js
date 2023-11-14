@@ -1,13 +1,18 @@
 
 //Empty variables
 let currentValue = "";
-let firstValue = "";
+let totalValue = "";
 let operator = "";
 
-//function to create the values and the current value
+//function to create values and current value
 function numFunction(value){
     let inputField =  document.querySelector(".input");
-    inputField.value += value
+    if(operator !== "" && totalValue !== ""){
+        inputField.value = "";
+        console.log(currentValue);
+    }
+
+    inputField.value += value;
     currentValue = inputField.value;
 }
 
@@ -15,13 +20,8 @@ function numFunction(value){
 function storeFirstValue(opr){
     if(currentValue !== ""){
         operator = opr;
-        firstValue = currentValue;
-        console.log(firstValue)
-        //problem
-        currentValue = "";
-        updateDisplay()
+        totalValue = currentValue;
     }
-
 }
 
 //function to clear the input field 
@@ -34,32 +34,30 @@ function calFunction(){
     let result;
     switch(operator){
         case "+":
-            result = parseFloat(firstValue) + parseFloat(currentValue);
+            result = parseFloat(totalValue) + parseFloat(currentValue);
             break;
-
+        
         case "-":
-            result = parseFloat(firstValue) - parseFloat(currentValue);
+            result = parseFloat(totalValue) - parseFloat(currentValue);
             break;
 
         case "*":
-            result = parseFloat(firstValue) * parseFloat(currentValue);
+            result = parseFloat(totalValue) * parseFloat(currentValue);
             break;
 
         case "/":
-            if(firstValue == 0){
+            if(totalValue == 0){
                 result = "Zero divison error";
             }else{
-                result = parseFloat(firstValue) / parseFloat(currentValue);
+                result = parseFloat(totalValue) / parseFloat(currentValue);
             }
 
             break;
         default:
             break;
     }
+    
     document.querySelector(".input").value = Math.round(result * 100)/100;
     operator = "";
-    firstValue = "";
-}
-function updateDisplay(){
-    document.querySelector(".input").value = currentValue;
+    totalValue = "";
 }
