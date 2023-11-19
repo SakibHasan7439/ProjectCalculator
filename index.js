@@ -1,63 +1,105 @@
 
 //Empty variables
-let currentValue = "";
-let totalValue = "";
-let operator = "";
+let firstValue = "";
+let secondValue = "";
+let resultValue = "";
+let nextOperator = "";
+let isClearInput = false;
 
 //function to create values and current value
-function numFunction(value){
-    let inputField =  document.querySelector(".input");
-    if(operator !== "" && totalValue !== ""){
+function numInputFunction(value) {
+    let inputField = document.querySelector(".input");
+
+    if (nextOperator !== "" && firstValue !== "" && isClearInput) {
         inputField.value = "";
-        console.log(currentValue);
+        isClearInput = false;
+
+        if (resultValue) {
+            resultValue = ""
+        }
     }
 
     inputField.value += value;
-    currentValue = inputField.value;
 }
 
 //function to convert the current value into first value and set the operator
-function storeFirstValue(opr){
-    if(currentValue !== ""){
-        operator = opr;
-        totalValue = currentValue;
+function storeFirstValue(operator) {
+    let inputField = document.querySelector(".input");
+    let currentOperator = nextOperator;
+    let isConsicutive = firstValue && inputField.value !== "";
+
+    if (resultValue !== "") {
+        firstValue = resultValue;
+    } else {
+        if (isConsicutive) {
+            resultValue = calculate(firstValue, inputField.value, currentOperator);
+            document.querySelector(".input").value = resultValue;
+
+            firstValue = resultValue;
+            secondValue = "";
+            resultValue = "";
+        } else {
+            firstValue = inputField.value;
+        }
     }
+
+
+    nextOperator = operator;
+    isClearInput = true;
 }
 
 //function to clear the input field 
-function delFunction(){
-    document.getElementById("demo").value = "";
+function clearInputFunction() {
+    document.querySelector("input").value = "";
+    firstValue = "";
+    secondValue = "";
+    resultValue = "";
+    nextOperator = "";
+    isClearInput = false;
 }
 
 //function to calculate the values
-function calFunction(){
+function calFunction() {
+    resultValue = calculate(firstValue, document.querySelector(".input").value, nextOperator);
+    document.querySelector(".input").value = resultValue;
+
+    nextOperator = "";
+    firstValue = "";
+    secondValue = "";
+}
+
+function calculate(value1, value2, operator) {
     let result;
-    switch(operator){
+    let errorText = "";
+
+    switch (operator) {
         case "+":
-            result = parseFloat(totalValue) + parseFloat(currentValue);
+            result = parseFloat(value1) + parseFloat(value2);
             break;
-        
+
         case "-":
-            result = parseFloat(totalValue) - parseFloat(currentValue);
+            result = parseFloat(value1) - parseFloat(value2);
             break;
 
         case "*":
-            result = parseFloat(totalValue) * parseFloat(currentValue);
+            result = parseFloat(value1) * parseFloat(value2);
             break;
 
+        //Uncought typeError
         case "/":
-            if(totalValue == 0){
-                result = "Zero divison error";
-            }else{
-                result = parseFloat(totalValue) / parseFloat(currentValue);
+            if (value1 == 0) {
+                errorText = "Zero divison error";
+            } else {
+                result = parseFloat(value1) / parseFloat(value2);
             }
-
             break;
         default:
             break;
     }
-    
-    document.querySelector(".input").value = Math.round(result * 100)/100;
-    operator = "";
-    totalValue = "";
+
+    if (errorText === "") {
+        result = Math.round(result * 100) / 100;
+    }
+
+    return result.toString();
 }
