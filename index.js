@@ -85,10 +85,11 @@ function calculate(value1, value2, operator) {
             result = parseFloat(value1) * parseFloat(value2);
             break;
 
-        //Uncought typeError
         case "/":
             if (value1 == 0) {
                 errorText = "Zero divison error";
+                result = errorText;
+
             } else {
                 result = parseFloat(value1) / parseFloat(value2);
             }
@@ -101,5 +102,6 @@ function calculate(value1, value2, operator) {
         result = Math.round(result * 100) / 100;
     }
 
-    return result.toString();
+    return result;    
+
 }
