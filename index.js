@@ -4,10 +4,20 @@ let firstValue = "";
 let secondValue = "";
 let resultValue = "";
 let nextOperator = "";
+let defaultValue = "";
+
+//Confusion about flag
 let isClearInput = false;
 
 //function to create values and current value
 function numInputFunction(value) {
+
+    if(document.querySelector(".input").value == defaultValue){
+        document.querySelector(".input").value = "";
+    }
+
+    document.querySelector(".input").removeAttribute("value");
+
     let inputField = document.querySelector(".input");
 
     if (nextOperator !== "" && firstValue !== "" && isClearInput) {
@@ -43,14 +53,15 @@ function storeFirstValue(operator) {
         }
     }
 
-
     nextOperator = operator;
     isClearInput = true;
 }
 
 //function to clear the input field 
 function clearInputFunction() {
-    document.querySelector("input").value = "";
+
+    defaultValue = 0;
+    document.querySelector("input").value = defaultValue;
     firstValue = "";
     secondValue = "";
     resultValue = "";
@@ -71,6 +82,10 @@ function calFunction() {
 function calculate(value1, value2, operator) {
     let result;
     let errorText = "";
+
+    if(value2 && operator == ""){
+        result = value1;
+    }
 
     switch (operator) {
         case "+":
@@ -94,6 +109,11 @@ function calculate(value1, value2, operator) {
                 result = parseFloat(value1) / parseFloat(value2);
             }
             break;
+
+        case "%":
+            result = parseFloat(value1) % parseFloat(value2);
+            break;
+
         default:
             break;
     }
