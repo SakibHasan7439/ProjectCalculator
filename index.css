@@ -8,6 +8,10 @@
     display: table;
   }
   
+  /* body {
+    background: linear-gradient(to right, rgb(1, 1, 50), rgb(1, 23, 1));
+  } */
+
   .float-left {
     float: left;
   }
@@ -75,4 +79,8 @@
     color: #ffffff;
     background-color: #000000;
     border: none;
+  }
+
+  .add-btn {
+    padding: 13px 17px;
   }
