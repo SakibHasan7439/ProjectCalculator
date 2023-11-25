@@ -16,7 +16,7 @@ function numInputFunction(value) {
     // the previous equations result will be clear from the display will not affect the new value.
     if(inputField.value == resultValue && nextOperator == ""){
         inputField.value = "";
-        resultValue = "";
+        resultValue = ""; 
     }
 
     if(inputField.value === "0" && value === "."){
@@ -84,6 +84,7 @@ function clearInputFunction() {
 
 //function to calculate the values
 function calFunction() {
+
     resultValue = calculate(firstValue, document.querySelector(".input").value, nextOperator);
     document.querySelector(".input").value = resultValue;
     
@@ -99,7 +100,7 @@ function calculate(value1, value2, operator) {
     //if the equal button is pressed after passing first operand as input,
     // the result will be the same operand that was passed by the user.
     if(value2 && operator == ""){
-        result = value1;
+        result = document.querySelector(".input").value;
     }
 
     switch (operator) {
