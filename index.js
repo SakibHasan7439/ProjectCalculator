@@ -15,7 +15,7 @@ function numInputFunction(value) {
     if(value === "." && inputField.value.includes(".")){
         return;
     }
-
+    
     //If a new value inputs after a equation without pressing any operator ,
     // the previous equations result will be clear from the display and will not affect the new value.
     if(inputField.value == resultValue && nextOperator == ""){
@@ -25,9 +25,7 @@ function numInputFunction(value) {
 
     //If decimal point clicked after 0 , inputField will be same but if any other value 
     // clicked then the default value will be remove.
-    if(inputField.value === "0" && value === "."){
-        inputField.value != "";
-    }else if(inputField.value === "0" && value !== "."){
+        if(inputField.value === "0" && value !== "."){
         inputField.value = "";  
     }
 
